@@ -20,7 +20,7 @@
         protected function tearDown()
         {
           City::deleteAll();
-        //   Flight::deleteAll();
+          Flight::deleteAll();
         }
 
         function testSave()
