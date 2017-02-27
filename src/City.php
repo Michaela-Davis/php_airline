@@ -13,5 +13,9 @@
         function getCity() {
             return $this->city;
         }
+
+        function getId() {
+            return $this->id;
+        }
     }
  ?>

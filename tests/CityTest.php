@@ -38,5 +38,20 @@
 
         }
 
+        function testGetId()
+        {
+            //Arrange
+            $city = "Tokyo";
+            $id = 1;
+            $test_city = new City($city, $id);
+
+            //Act
+            $result = $test_city->getId();
+
+            //Assert
+            $this->assertEquals($id, $result);
+
+        }
+
     }
 ?>
