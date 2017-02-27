@@ -19,7 +19,7 @@
 
         protected function tearDown()
         {
-        //   City::deleteAll();
+          City::deleteAll();
         //   Flight::deleteAll();
         }
 
@@ -50,6 +50,27 @@
 
             //Assert
             $this->assertEquals($id, $result);
+
+        }
+
+        function testGetAll()
+        {
+            //Arrange
+            $city = "Tokyo";
+            $id = null;
+            $test_city = new City($city, $id);
+
+            $city2 = "Portland";
+            $id2 = null;
+            $test_city2 = new City($city2, $id2);
+
+            //Act
+            $test_city->save();
+            $test_city2->save();
+            $result = City::getAll();
+
+            //Assert
+            $this->assertEquals([$test_city, $test_city2], $result);
 
         }
 
