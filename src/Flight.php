@@ -69,6 +69,18 @@
             return $flights;
         }
 
+        static function getFlightById($search_id)
+        {
+            $found_flight = null;
+            $flights = Flight::getAll();
+            foreach($flights as $flight) {
+                $flight_id = $flight->getId();
+                if ($flight_id == $search_id) {
+                    $found_flight = $flight;
+                }
+            }
+            return $found_flight;
+        }
 
 
     }
