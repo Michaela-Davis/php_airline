@@ -23,6 +23,21 @@
         //   Flight::deleteAll();
         }
 
+        function testSave()
+        {
+            //Arrange
+            $city = "Tokyo";
+            $id = null;
+            $test_city = new City($city, $id);
+
+            //Act
+            $test_city->save();
+            $result = City::getAll();
+
+            //Assert
+            $this->assertEquals([$test_city], $result);
+        }
+
         function testGetCity()
         {
             //Arrange
@@ -35,7 +50,6 @@
 
             //Assert
             $this->assertEquals($city, $result);
-
         }
 
         function testGetId()
@@ -50,7 +64,6 @@
 
             //Assert
             $this->assertEquals($id, $result);
-
         }
 
         function testGetAll()
@@ -71,7 +84,6 @@
 
             //Assert
             $this->assertEquals([$test_city, $test_city2], $result);
-
         }
 
         function testDeleteAll()
@@ -93,7 +105,6 @@
 
             //Assert
             $this->assertEquals([], $result);
-
         }
 
     }
