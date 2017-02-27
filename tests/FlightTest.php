@@ -126,7 +126,7 @@
             $this->assertEquals([$test_flight], $result);
         }
 
-        function getAll()
+        function test_getAll()
         {
             //Arrange
             $departure_time = "2017-02-28 03:30:00";
@@ -150,6 +150,33 @@
 
             //Assert
             $this->assertEquals([$test_flight, $test_flight2], $result);
+        }
+
+        function test_deleteAll()
+        {
+            //Arrange
+            $departure_time = "2017-02-28 03:30:00";
+            $departure_city_id = 1;
+            $arrival_city_id = 2;
+            $status_id = 1;
+            $id = null;
+            $test_flight = new Flight($departure_time, $departure_city_id, $arrival_city_id, $status_id, $id);
+
+            $departure_time2 = "2017-03-28 03:30:00";
+            $departure_city_id2 = 2;
+            $arrival_city_id2 = 3;
+            $status_id2 = 1;
+            $id2 = null;
+            $test_flight2 = new Flight($departure_time2, $departure_city_id2, $arrival_city_id2, $status_id2, $id2);
+
+            //Act
+            $test_flight->save();
+            $test_flight2->save();
+            Flight::deleteAll();
+            $result = Flight::getAll();
+
+            //Assert
+            $this->assertEquals([], $result);
         }
 
 
