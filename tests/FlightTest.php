@@ -26,12 +26,12 @@
         function testGetDepartureTime()
         {
             //Arrange
-            $departure_time = "2017-2-28 03:30:00";
-            $departure_city = 1;
-            $arrival_city = 2;
+            $departure_time = "2017-02-28 03:30:00";
+            $departure_city_id = 1;
+            $arrival_city_id = 2;
             $status_id = 1;
             $id = 1;
-            $test_flight = new Flight($departure_time, $departure_city, $arrival_city, $status_id, $id);
+            $test_flight = new Flight($departure_time, $departure_city_id, $arrival_city_id, $status_id, $id);
 
             //Act
             $result = $test_flight->getDepartureTime();
@@ -43,46 +43,46 @@
         function testGetDepartureCity()
         {
             //Arrange
-            $departure_time = "2017-2-28 03:30:00";
-            $departure_city = 1;
-            $arrival_city = 2;
+            $departure_time = "2017-02-28 03:30:00";
+            $departure_city_id = 1;
+            $arrival_city_id = 2;
             $status_id = 1;
             $id = 1;
-            $test_flight = new Flight($departure_time, $departure_city, $arrival_city, $status_id, $id);
+            $test_flight = new Flight($departure_time, $departure_city_id, $arrival_city_id, $status_id, $id);
 
             //Act
             $result = $test_flight->getDepartureCity();
 
             //Assert
-            $this->assertEquals($departure_city, $result);
+            $this->assertEquals($departure_city_id, $result);
         }
 
         function testGetArrivalCity()
         {
             //Arrange
             $departure_time = "2017-2-28 03:30:00";
-            $departure_city = 1;
-            $arrival_city = 2;
+            $departure_city_id = 1;
+            $arrival_city_id = 2;
             $status_id = 1;
             $id = 1;
-            $test_flight = new Flight($departure_time, $departure_city, $arrival_city, $status_id, $id);
+            $test_flight = new Flight($departure_time, $departure_city_id, $arrival_city_id, $status_id, $id);
 
             //Act
             $result = $test_flight->getArrivalCity();
 
             //Assert
-            $this->assertEquals($arrival_city, $result);
+            $this->assertEquals($arrival_city_id, $result);
         }
 
         function testGetStatusId()
         {
             //Arrange
-            $departure_time = "2017-2-28 03:30:00";
-            $departure_city = 1;
-            $arrival_city = 2;
+            $departure_time = "2017-02-28 03:30:00";
+            $departure_city_id = 1;
+            $arrival_city_id = 2;
             $status_id = 1;
             $id = 1;
-            $test_flight = new Flight($departure_time, $departure_city, $arrival_city, $status_id, $id);
+            $test_flight = new Flight($departure_time, $departure_city_id, $arrival_city_id, $status_id, $id);
 
             //Act
             $result = $test_flight->getStatusId();
@@ -94,12 +94,12 @@
         function testGetId()
         {
             //Arrange
-            $departure_time = "2017-2-28 03:30:00";
-            $departure_city = 1;
-            $arrival_city = 2;
+            $departure_time = "2017-02-28 03:30:00";
+            $departure_city_id = 1;
+            $arrival_city_id = 2;
             $status_id = 1;
             $id = 1;
-            $test_flight = new Flight($departure_time, $departure_city, $arrival_city, $status_id, $id);
+            $test_flight = new Flight($departure_time, $departure_city_id, $arrival_city_id, $status_id, $id);
 
             //Act
             $result = $test_flight->getId();
@@ -108,6 +108,23 @@
             $this->assertEquals($id, $result);
         }
 
+        function testSave()
+        {
+            //Arrange
+            $departure_time = "2017-02-28 03:30:00";
+            $departure_city_id = 1;
+            $arrival_city_id = 2;
+            $status_id = 1;
+            $id = null;
+            $test_flight = new Flight($departure_time, $departure_city_id, $arrival_city_id, $status_id, $id);
+
+            //Act
+            $test_flight->save();
+            $result = Flight::getAll();
+
+            //Assert
+            $this->assertEquals([$test_flight], $result);
+        }
 
 
     }
