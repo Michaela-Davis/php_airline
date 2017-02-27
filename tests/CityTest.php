@@ -74,5 +74,27 @@
 
         }
 
+        function testDeleteAll()
+        {
+            //Arrange
+            $city = "Tokyo";
+            $id = null;
+            $test_city = new City($city, $id);
+
+            $city2 = "Portland";
+            $id2 = null;
+            $test_city2 = new City($city2, $id2);
+
+            //Act
+            $test_city->save();
+            $test_city2->save();
+            City::deleteAll();
+            $result = City::getAll();
+
+            //Assert
+            $this->assertEquals([], $result);
+
+        }
+
     }
 ?>
