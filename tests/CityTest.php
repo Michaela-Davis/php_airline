@@ -19,11 +19,11 @@
 
         protected function tearDown()
         {
-          City::deleteAll();
-          Flight::deleteAll();
+        //   City::deleteAll();
+        //   Flight::deleteAll();
         }
 
-        function testGetName()
+        function testGetCity()
         {
             //Arrange
             $city = "Tokyo";
@@ -31,10 +31,10 @@
             $test_city = new City($city, $id);
 
             //Act
-            $result = $test_city->getName();
+            $result = $test_city->getCity();
 
             //Assert
-            $this->assertEquals($name, $result);
+            $this->assertEquals($city, $result);
 
         }
 

@@ -5,11 +5,13 @@
         private $city;
         private $id;
 
-        function __construct($name, $id = null) {
+        function __construct($city, $id = null) {
             $this->city = $city;
             $this->id = $id;
         }
 
-        
+        function getCity() {
+            return $this->city;
+        }
     }
  ?>
