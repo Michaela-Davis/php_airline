@@ -54,7 +54,7 @@
         function test_save()
         {
             $name = 'Alaska';
-            $id = 1;
+            $id = null;
             $test_airline = new Airline($name, $id);
 
             //Act
@@ -63,6 +63,24 @@
 
             //Assert
             $this->assertEquals($result, [$test_airline]);
+        }
+
+        function test_getAirlineById() {
+            $name = 'Alaska';
+            $id = null;
+            $test_airline = new Airline($name, $id);
+
+            $name2 = 'Horizon';
+            $id2 = null;
+            $test_airline2 = new Airline($name2, $id2);
+
+            //Act
+            $test_airline->save();
+            $test_airline2->save();
+            $result = Airline::getAirlineById($test_airline2->getId());
+
+            //Assert
+            $this->assertEquals($result, $test_airline2);
         }
 
 

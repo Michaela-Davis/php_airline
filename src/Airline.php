@@ -24,6 +24,18 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        static function getAirlineById($search_id)
+        {
+            $found_airline = null;
+            $airlines = Airline::getAll();
+            foreach($airlines as $airline) {
+                if($search_id == $airline->getId()) {
+                    $found_airline = $airline;
+                }
+            }
+            return $found_airline;
+        }
+
         static function getAll() {
             $returned_airlines = $GLOBALS['DB']->query("SELECT * FROM airlines;");
             $airlines = [];
