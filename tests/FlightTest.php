@@ -205,6 +205,35 @@
             $this->assertEquals($test_flight, $result);
         }
 
+        function test_getAirlines()
+        {
+            $name = 'Alaska';
+            $id = null;
+            $test_airline = new Airline($name, $id);
+
+            $name2 = 'Horizon';
+            $id2 = null;
+            $test_airline2 = new Airline($name2, $id2);
+
+            $departure_time = "2017-02-28 03:30:00";
+            $departure_city_id = 1;
+            $arrival_city_id = 2;
+            $status_id = 1;
+            $id = null;
+            $test_flight = new Flight($departure_time, $departure_city_id, $arrival_city_id, $status_id, $id);
+
+            //   Act
+            $test_airline->save();
+            $test_airline2->save();
+            $test_flight->save();
+            $test_flight->addAirline($test_airline);
+            $test_flight->addAirline($test_airline2);
+            $result = $test_flight->getAirlines();
+
+            //   Assert
+            $this->assertEquals($result, [$test_airline, $test_airline2]);
+        }
+
 
     }
 ?>

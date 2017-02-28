@@ -108,11 +108,14 @@
             $test_flight->save();
             $test_flight2->save();
             $test_airline->addFlight($test_flight2);
+            $test_airline->addFlight($test_flight);
             $result = $test_airline->getFlights();
 
-            $this->assertEquals($result, [$test_flight2]);
+            $this->assertEquals($result, [$test_flight2, $test_flight]);
 
         }
+
+
 
 
 

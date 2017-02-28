@@ -48,6 +48,30 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        function addAirline($airline)
+        {
+            $GLOBALS['DB']->exec("INSERT INTO flights_airlines (flight_id, airline_id) VALUES ({$this->getId()}, {$airline->getId()});");
+        }
+
+        function getAirlines()
+        {
+            $query = $GLOBALS['DB']->query("SELECT airline_id FROM flights_airlines WHERE flight_id = {$this->getId()};");
+            $airline_ids = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            $airlines = [];
+            foreach ($airline_ids as $id) {
+                $airline_id = $id['airline_id'];
+                $result = $GLOBALS['DB']->query("SELECT * FROM airlines WHERE id = {$airline_id};");
+                $returned_airline = $result->fetchAll(PDO::FETCH_ASSOC);
+
+                $name = $returned_airline[0]['name'];
+                $id = $returned_airline[0]['id'];
+                $new_airline = new Airline($name, $id);
+                array_push($airlines, $new_airline);
+            }
+            return $airlines;
+        }
+
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM flights;");
